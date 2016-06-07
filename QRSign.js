@@ -29,26 +29,9 @@ require(["jquery", "signature_pad", "bootstrap"], function () {
             });
             return false;
         }
-        $.ajax({
-            url: '/sdk/QRSign/createSignByQR',
-            type: 'post',
-            data: {
-                sign: (signaturePad.toDataURL()).split("base64,")[1]
-            },
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                if (data.code == 200 && data.subCode == 200) {
-                    alert('签名创建成功！');
-                    window.open("about:blank","_self").close();
-                } else {
-                    alert(data.message);
-                }
-            },
-            error: function () {
-                alert('系统异常');
-            }
-        });
+        sessionStorage.sign = (signaturePad.toDataURL()).split("base64,")[1];
+        // console.log((signaturePad.toDataURL()).split("base64,")[1]);
+        window.location.href='./sign.html';
     });
     /**
      * 初始化画签名的画布

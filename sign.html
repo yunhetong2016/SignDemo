@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>签署页面</title>
+    <style>
+        h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+            margin: 0;
+            padding: 0;
+        }
+        body{padding:30px;}
+        .btn-name{border: solid 1px #cccccc; width: 45%; background-color: #fff; padding: 10px 0; border-radius: 5px; font-size: 16px;}
+        .btn-name:focus{outline: none;}
+        .btn-use, .btn-use:hover, .btn-use:focus{border: 1px solid #fac77d; color: #fac77d;}
+        .margin-div{margin: 10% 0 0 25%;}
+    </style>
+    <link href="./bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div>
+        <img id="sign" src=""/>
+    </div>
+
+    <div class="margin-div">
+        <button class="btn-name btn-use" id="btn-addSign">签署</button>
+    </div>
+</body>
+
+
+
+<script type="text/javascript" data-main="./jquery.min.js" src="./jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#sign').attr('src', 'data:image/png;base64,' + sessionStorage.getItem('sign'));
+    });
+</script>
+</html>
