@@ -1,10 +1,10 @@
 "use strict";
 require.config({
     paths: {
-        "jquery": "http://cdn.bootcss.com/jquery/2.2.3/jquery.min",
-        "signature_pad": "http://cdn.bootcss.com/signature_pad/1.5.3/signature_pad.min",
-        "bootstrap": "http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min",
-        "sweetalert": "/sdk/plugins/sweetalert/sweetalert.min"
+        "jquery": "./jquery.min",
+        "signature_pad": "./signature_pad.min",
+        "bootstrap": "./bootstrap.min",
+        "sweetalert": "./sweetalert.min"
     }, shim: {
         "jquery": {"export": "$"},
         "bootstrap": {"deps": ['jquery']},
