@@ -31,7 +31,7 @@ require(["jquery", "signature_pad", "bootstrap"], function () {
         }
         sessionStorage.sign = (signaturePad.toDataURL()).split("base64,")[1];
         // console.log((signaturePad.toDataURL()).split("base64,")[1]);
-        window.location.href='./sign.html';
+        window.location.href='./sign2.html';
     });
     /**
      * 初始化画签名的画布
