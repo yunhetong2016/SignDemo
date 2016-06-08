@@ -47,9 +47,12 @@
     </div>
 </div>
 
-  <div class="margin-div">
-    <button class="btn-name btn-use" id="btnSign">签署</button>
-  </div>
+    <div class="margin-div">
+      <button class="btn-name btn-use" id="btnSign">签署</button>
+    </div>
+    <div class="margin-div">
+      <button class="btn-name btn-use" id="send" style="display: none;">发送</button>
+    </div>
 
 
   <div class="modal fade" id="SmsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -111,7 +114,11 @@
   $("#signSubmitBtn").click(function () {
     $('#SmsModal').modal('hide');
     $("#draggable").unbind();
+    $('#btnSign').css("display","none");
+    $('#send').css("display","block");
+  });
 
+  $("#send").click(function () {
     window.location.href = './send.html';
   });
 </script>
