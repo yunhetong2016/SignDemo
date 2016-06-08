@@ -20,14 +20,18 @@
         }
         @media screen and (orientation: landscape) {/*横屏 css*/}
         #div-drawSign:hover {
-            cursor: url("./pen.svg") 0 47, pointer;
+            cursor: url("common/pen.svg") 0 47, pointer;
         }
         .margin-div{margin: 10% 0 0 25%;}
         .div-drawSign{border-right: 1px solid #ccc;}
         .container-fluid{border: 1px solid #ccc;}
         .title-bor{border-bottom: 1px solid #ccc;}
     </style>
-    <link href="./bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <script src="common/jquery.min.js"></script>
+    <script src="common/signature_pad.min.js"></script>
+    <script src="common/bootstrap.min.js"></script>
+    <script src="common/sweetalert.min.js"></script>
+    <link href="common/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="container-fluid">
@@ -48,6 +52,67 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" data-main="./QRSign.js?t=1" src="http://apps.bdimg.com/libs/require.js/2.1.11/require.min.js"></script>
 </body>
+<script type="text/javascript">
+    $(function () {
+        // $( window ).orientationchange();
+        var canvas = document.querySelector("canvas");
+        var signaturePad;
+        // init();
+        signaturePad = initCanvas();
+        $('#btn-clear').on('click', function () {
+            signaturePad.clear();
+        });
+        $('#btn-addSign').on('click', function () {
+            if (signaturePad.isEmpty()) {
+                swal({
+                    title: "请绘制你的签名",
+                    type: "error",
+                    showCancelButton: false
+                });
+                return false;
+            }
+            sessionStorage.sign = (signaturePad.toDataURL()).split("base64,")[1];
+            // console.log((signaturePad.toDataURL()).split("base64,")[1]);
+            window.location.href = './sign2.html';
+        });
+        /**
+         * 初始化画签名的画布
+         */
+        function initCanvas() {
+            // var ratio = Math.max(window.devicePixelRatio || 1, 1);
+            var offsetWidth = $(canvas.parentNode).width();
+            //console.log($(canvas.parentNode).width());
+            canvas.width = offsetWidth;
+            canvas.height = offsetWidth * 0.55;
+            return new SignaturePad(canvas, {
+                minWidth: 1.4, maxWidth: 2
+            });
+            //signaturePad.penColor="rgb(255,255,0)";
+        }
+
+        $(function () {
+            if (window.orientation == 0 || window.orientation == 180) {
+                alert('请横屏！');
+                return false;
+            }
+            initCanvas();
+        });
+        $(window).bind('orientationchange', function (e) {
+            var $body = $("body");
+            if (window.orientation == 0 || window.orientation == 180) {
+                alert('请横屏！');
+                return false;
+            }
+            initCanvas();
+        });
+        /**
+         * 获取url中的token参数
+         * @returns {*}
+         */
+        function getToken() {
+            return ((window.location.search.split('token=')[1]) || 'noTokenFound').split('&')[0];
+        }
+    });
+</script>
 </html>
