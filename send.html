@@ -2,39 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/css/base/jquery.ui.all.css" rel="stylesheet">
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/css/lightness/jquery-ui-1.10.2.custom.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
   <script src="common/bootstrap.min.js"></script>
   <link href="common/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-  <!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
   <title>发送页面</title>
   <style>
     h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
       margin: 0;
       padding: 0;
     }
-    body{padding:30px; background:#fff; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; }
-    .select-input{padding:8px 5px;}
+    li{list-style: none;}
+    html,body{ background:#fff; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;overflow-x: hidden;height: 100%;}
+    .select-input{font-size: 20px;}
     .margin-top{margin-top: 15px;}
+    .header{width: 100%;height:80px;margin-top: 50px;padding: 0 15px;}
+    .head-ul{display: flex; -webkit-justify-content:space-between;justify-content: space-between;-webkit-align-items: center;align-items: center;}
+    .head-ul>li{display: inline-block;}
+    .head-ul>li:nth-child(odd){width:16%;text-align: center;}
+    .head-ul>li:nth-child(even){width:23%;height: 3px;background: #ccc;position: relative;top: -7px;}
+    .num{width:50px;height:50px;line-height:50px;background: #ddd;color: #fff;border-radius: 50%;margin: 0 auto;font-size: 25px;}
+    .container{margin-top: 50px;padding: 0 25px;overflow: hidden}
+    .name-ul{margin-top: 20px;display: none}
+    .name-ul>li{width:80%;height:45px;display:flex;-webkit-align-items:center;align-items: center;margin-top: 15px;}
+    .name-ul>li>input{position: absolute;left: -99999em;}
+    .name-ul>li>input:checked+label:before{content: "√";color:#000;font-weight:800;font-size: 15px;}
+    .name-ul>li>label{position: relative;padding-left:50px;}
+    .name-ul>li>label:before{content: "";width: 20px;height: 20px;border-radius: 50%;position: absolute;left: 10px;border: 1px solid #ccc;text-align: center;}
+    .cont-pr{position: relative;margin: 15px 0 0 0;}
+    .send-sub{width:90px;height:35px;color:#fff;line-height: 35px;position: absolute;bottom:25px;left: 0;right: 0;margin: auto;border-radius: 8px;border: none;outline: none;}
+    @media ( max-width: 375px) {
+      .head-ul>li:nth-child(odd){width: 18%;}
+      .head-ul>li:nth-child(even){width: 20%;top:-7px;}
+      .send-text{font-size: 12px}
+    }
+    @media ( max-width: 320px) {
+      .head-ul>li:nth-child(odd){width: 18%;}
+      .head-ul>li:nth-child(even){width: 20%;top:-7px;}
+      .send-text{font-size: 12px}
+    }
   </style>
-
 </head>
 <body>
-<div class="container">
-  <h2>收件方姓名</h2>
-  <div class="row margin-top">
-    <input type="text" class="col-xs-12 select-input" readonly="readonly" placeholder="请选择收件人">
-  </div>
+<div class="header">
+  <ul class="head-ul">
+    <li>
+      <div class="num">1</div>
+      <div class="send-text">绘制签名</div>
+    </li>
+    <li></li>
+    <li>
+      <div class="num">2</div>
+      <div class="send-text">签署合同</div>
+    </li>
+    <li></li>
+    <li>
+      <div class="num">3</div>
+      <div class="send-text">发送合同</div>
+    </li>
+  </ul>
 </div>
+<div class="container">
+  <h3>收件方姓名</h3>
+  <div class="cont-pr row margin-top">
+    <input type="text" id="select_input" class="select-input" readonly="readonly" placeholder="请选择收件人">
+  </div>
+  <ul id="name_ul" class="name-ul">
+    <li>
+      <input id="send-name1" class="send-name" type="radio" name="send-name" value="maozhuxi">
+      <label for="send-name1">maozhuxi</label>
+    </li>
+    <li>
+      <input id="send-name2" class="send-name" type="radio" name="send-name" value="jiangshouzhang">
+      <label for="send-name2">jiangshouzhang</label>
+    </li>
+    <li>
+      <input id="send-name3" class="send-name" type="radio" name="send-name" value="hushuji">
+      <label for="send-name3">hushuji</label>
+    </li>
+    <li>
+      <input id="send-name4" class="send-name" type="radio" name="send-name" value="xidada">
+      <label for="send-name4">xidada</label>
+    </li>
+  </ul>
+  <script>
+    $(document).ready(function () {
+      $('#select_input').click(function () {
+        $('#name_ul').show(200);
+      });
+      $('#name_ul li').each(function () {
+        $(this).click(function () {
+          $(this).css('border','1px solid #ccc').siblings().hide();
+          $('#send_sub').attr("disabled",false).css('background','#aaa');
+        })
+      })
+    })
+  </script>
+</div>
+<input id="send_sub" class="send-sub" type="submit" value="发送" disabled>
 <!--
 <div class="container">
 
@@ -113,7 +178,7 @@
     $('#SmsModal').modal('hide');
     $("#draggable").unbind();
 
-    
+
   });
 </script>
 </body>
