@@ -9,23 +9,21 @@
             margin: 0;
             padding: 0;
         }
-        body{padding:30px;}
-        .title-div { background: #efefef; height: 45px;}
-        .name-p{ font-size: 18px; line-height: 45px;}
-        .btn-name{border: solid 1px #cccccc; width: 45%; background-color: #fff; padding: 10px 0; border-radius: 5px; font-size: 16px;}
+        .btn-name{ color:#fff;width:100%; background-color: #4fbbf4; padding: 5px 0; border-radius: 5px; font-size: 16px;border: none}
         .btn-name:focus{outline: none;}
-        .btn-use, .btn-use:hover, .btn-use:focus{border: 1px solid #fac77d; color: #fac77d;}
-        .btn-clear, .btn-clear:hover , .btn-clear:focus{border: 1px solid #676767; color: #676767;}
         @media screen and (orientation: portrait) { body{display: none;}/*竖屏 css*/
         }
         @media screen and (orientation: landscape) {/*横屏 css*/}
         #div-drawSign:hover {
             cursor: url("common/pen.svg") 0 47, pointer;
         }
-        .margin-div{margin: 10% 0 0 25%;}
-        .div-drawSign{border-right: 1px solid #ccc;}
-        .container-fluid{border: 1px solid #ccc;}
-        .title-bor{border-bottom: 1px solid #ccc;}
+        .margin-div{width:80px;position: absolute;right:20px;}
+        .mg-top{bottom:60px;}
+        .mg-bot{bottom:20px;}
+        .div-drawSign{width:100%;height:100%;padding: 15px 170px 0 15px;overflow: hidden;}
+        .container-fl{width: 87.4vw;height:100vh;float: left;margin: 0;padding: 0;position: relative;}
+        /**/
+        nav{background:url("common/images/nav.png")no-repeat center #4fbbf4;background-size:70% ;width:12.5vw;height:100vh;float: left;}
     </style>
     <script src="common/jquery.min.js"></script>
     <script src="common/signature_pad.min.js"></script>
@@ -34,22 +32,16 @@
     <link href="common/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row title-bor">
-        <div class="col-xs-12 title-div"><p class="name-p">绘制签名区</p></div>
+<nav></nav>
+<div class="container-fl">
+    <div class="div-drawSign" id="div-drawSign">
+        <canvas></canvas>
     </div>
-    <div class="row">
-        <div class="col-xs-9 div-drawSign" id="div-drawSign">
-            <canvas></canvas>
-        </div>
-        <div class="col-xs-3">
-            <div class="margin-div">
-                <button class="btn-name btn-use" id="btn-addSign">采用</button>
-            </div>
-            <div class="margin-div">
-                <button class="btn-name btn-clear" id="btn-clear">清除</button>
-            </div>
-        </div>
+    <div class="margin-div mg-top">
+        <button class="btn-name btn-use" id="btn-addSign">采用</button>
+    </div>
+    <div class="margin-div mg-bot">
+        <button class="btn-name btn-clear" id="btn-clear">清除</button>
     </div>
 </div>
 </body>
@@ -84,7 +76,7 @@
             var offsetWidth = $(canvas.parentNode).width();
             //console.log($(canvas.parentNode).width());
             canvas.width = offsetWidth;
-            canvas.height = offsetWidth * 0.55;
+            canvas.height = offsetWidth * 0.85;
             return new SignaturePad(canvas, {
                 minWidth: 1.4, maxWidth: 2
             });

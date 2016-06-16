@@ -2,31 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>签署页面</title>
   <style>
     h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
       margin: 0;
       padding: 0;
+      text-align: center;
     }
-    body{padding:30px;}
-    .btn-name{border: solid 1px #cccccc; width: 45%; background-color: #fff; padding: 10px 0; border-radius: 5px; font-size: 16px;}
+    nav{width:100%;height:80px;background:url("common/images/nav2.png")no-repeat center #4fbbf4;background-size:80%;}
+    body{height: 100%;overflow-x: hidden;background:#fff; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+    .btn-name{border: solid 1px #ccc; width: 45%; background-color: #fff; padding: 10px 0; border-radius: 5px; font-size: 16px;margin: 10px auto;}
     .btn-name:focus{outline: none;}
     .btn-use, .btn-use:hover, .btn-use:focus{border: 1px solid #fac77d; color: #fac77d;}
-    .margin-div{margin: 10% 0 0 25%;}
+    .margin-div{margin:0 auto;text-align: center}
+    .draggable{width: 110px;height: 50px;float: left;z-index: 99;bottom: 25px;}
+    .draggable img{width: 100%;height: 100%;border: 1px dashed #4fbbf4;}
+    .demo-description{position: relative;}
+    .demo-description img{width: 100%;position: relative;top:-50px;left: 0;}
   </style>
-
-  <!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-
   <!--<link rel="shortcut icon" href="/ico/favicon.ico">-->
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
-
-  <style>body { background:#fff; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; }</style>
-
   <link href="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/css/base/jquery.ui.all.css" rel="stylesheet">
   <link href="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.2/css/lightness/jquery-ui-1.10.2.custom.min.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -36,25 +34,21 @@
   <link href="common/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div class="container">
+<nav></nav>
+<h1>体验云合同</h1>
+ <div id="draggable" class="draggable">
+   <img id="sign" src=""/>
+ </div>
 
-    <div id="draggable">
-      <img id="sign" src="" style="height: 120px;width: 200px;border:1px dashed;"/>
-    </div>
-
-    <div class="demo-description">
-      <img src="./contract.png"/>
-    </div>
-</div>
-
-    <div class="margin-div">
-      <button class="btn-name btn-use" id="btnSign">签署</button>
-    </div>
-    <div class="margin-div">
-      <button class="btn-name btn-use" id="send" style="display: none;">发送</button>
-    </div>
-
-
+ <div class="demo-description">
+   <img src="common/images/ht.png"/>
+ </div>
+ <div class="margin-div">
+   <button class="btn-name btn-use" id="btnSign">签署</button>
+ </div>
+ <div class="margin-div">
+   <button class="btn-name btn-use" id="send" style="display: none;">发送</button>
+ </div>
   <div class="modal fade" id="SmsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -71,7 +65,7 @@
               <div class="col-xs-5">
                 <input type="text" class="form-control" id="smsCode" placeholder="请输入手机收到的验证码" value="123456">
               </div>
-              <button type="button" class="btn bottom-bg2" id="reSendSmsBtn" style="margin-right: 20px;">获取验证码</button>
+              <button type="button" class="btn bottom-bg2" id="reSendSmsBtn">获取验证码</button>
             </div>
             <div class="form-group">
               <div class="col-xs-offset-2 col-xs-10" style="padding-right: 10px;">

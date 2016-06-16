@@ -7,17 +7,19 @@
     <title>完成页面</title>
     <style>
         *{padding: 0;margin: 0}
-        html,body{min-height: 100%}
+        html,body{min-height: 100%;background:#f1f1f1;}
         body { font: 150%/1.6 Baskerville, Palatino, serif;text-align: center}
         a{text-decoration: none;}
-        section a{color: #fff;display: block;background: #ddd;width: 60%;margin:15px auto;border-radius: 8px;}
+        section a{color: #fff;display: block;background: #4fbbf4;width: 60%;margin:15px auto;border-radius: 8px;}
         header{width:90%;margin: 95px auto}
         header h2,h3,h5{margin: 15px 0}
         section{;margin: 20px auto 50px}
         footer{width:100%;position: absolute;bottom:2em;}
         footer dt,dd{display: inline}
-        footer dd + dt::before {  content: "\A";  white-space: pre;  }
-        footer dd + dd::before {  content: '';margin-left: -.25em;}
+        .finish-link1{background: url("common/images/wx.png")no-repeat center}
+        .finish-link2{background: url("common/images/wb.png")no-repeat center}
+        .finish-link3{background: url("common/images/fr.png")no-repeat center}
+        .finish-link{width: 40px;height: 40px;display: inline-block;background-size: contain;position: relative;top: 10px;}
         @media (max-width: 320px) {
             header{margin: 50px auto}
         }
@@ -36,9 +38,9 @@
 <footer>
     <dl>
         <dt>分享至: </dt>
-        <dd><a href="">微信</a></dd>
-        <dd><a href="">微博</a></dd>
-        <dd><a href="">朋友圈</a></dd>
+        <a class="finish-link finish-link1" href=""></a>
+        <a class="finish-link finish-link2" href=""></a>
+        <a class="finish-link finish-link3" href=""></a>
     </dl>
 </footer>
 </body>

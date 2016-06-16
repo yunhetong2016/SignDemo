@@ -13,23 +13,26 @@
       padding: 0;
     }
     li{list-style: none;}
-    html,body{ background:#fff; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;overflow-x: hidden;height: 100%;}
-    .select-input{width: 80%;height:45px;font-size: 20px;}
+    html,body{ background:#f1f1f1; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;overflow-x: hidden;height: 100%;}
+    nav{width:100%;height:80px;background:url("common/images/nav2.png")no-repeat center #4fbbf4;background-size:80%;}
+    .select-input{width:100%;height:35px;border:none;font-size: 18px;background: url("common/images/head.png")no-repeat right center;background-size:contain;}
     .margin-top{margin-top: 15px;}
     .header{width: 100%;height:80px;margin-top: 50px;padding: 0 15px;}
     .head-ul{display: flex; -webkit-justify-content:space-between;justify-content: space-between;-webkit-align-items: center;align-items: center;}
+    .p-title{font-size: 20px;font-weight: bold;}
     .head-ul>li{display: inline-block;}
     .head-ul>li:nth-child(odd){width:16%;text-align: center;}
     .head-ul>li:nth-child(even){width:23%;height: 3px;background: #ccc;position: relative;top: -7px;}
     .num{width:50px;height:50px;line-height:50px;background: #ddd;color: #fff;border-radius: 50%;margin: 0 auto;font-size: 25px;}
-    .container{margin-top: 50px;padding: 0 25px;overflow: hidden}
+    .container{width:95%;margin-top:10px;padding:30px 10px;overflow: hidden;background: #fff;}
     .name-ul{margin-top: 20px;display: none}
-    .name-ul>li{width:80%;height:45px;display:flex;-webkit-align-items:center;align-items: center;margin-top: 15px;}
+    .name-ul>li{width:100%;height:45px;display:flex;-webkit-align-items:center;align-items: center;margin-top: 15px;position: relative}
     .name-ul>li>input{position: absolute;left: -99999em;}
-    .name-ul>li>input:checked+label:before{content: "√";color:#000;font-weight:800;font-size: 15px;}
-    .name-ul>li>label{position: relative;padding-left:50px;}
-    .name-ul>li>label:before{content: "";width: 20px;height: 20px;border-radius: 50%;position: absolute;left: 10px;border: 1px solid #ccc;text-align: center;}
-    .cont-pr{position: relative;margin: 15px 0 0 0;}
+    .name-ul>li>input:checked+label:after{content: "✓";color:#4fbbf4;font-weight:800;font-size: 18px;}
+    .name-ul>li>label{padding-left:50px;}
+    .name-ul>li>label:after{content: "";width: 20px;height: 20px;position: absolute;right:10px;text-align: center;}
+    i{height: 20px;width: 20px;background: url("common/images/head_sml.png")no-repeat center;background-size:contain; position: relative;left: 10px;bottom: 2px;}
+    .cont-pr{width:100%;position: relative;margin: 15px 0 0 0;padding: 5px;border: 1px solid #ccc;}
     .send-sub{width:90px;height:35px;color:#fff;line-height: 35px;position: absolute;bottom:25px;left: 0;right: 0;margin: auto;border-radius: 8px;border: none;outline: none;}
     @media ( max-width: 375px) {
       .head-ul>li:nth-child(odd){width: 18%;}
@@ -44,43 +47,30 @@
   </style>
 </head>
 <body>
-<div class="header">
-  <ul class="head-ul">
-    <li>
-      <div class="num">1</div>
-      <div class="send-text">绘制签名</div>
-    </li>
-    <li></li>
-    <li>
-      <div class="num">2</div>
-      <div class="send-text">签署合同</div>
-    </li>
-    <li></li>
-    <li>
-      <div class="num">3</div>
-      <div class="send-text">发送合同</div>
-    </li>
-  </ul>
-</div>
+<nav></nav>
 <div class="container">
-  <h3>收件方姓名</h3>
+  <p class="p-title">收件方姓名</p>
   <div class="cont-pr row margin-top">
     <input type="text" id="select_input" class="select-input" readonly="readonly" placeholder="请选择收件人">
   </div>
   <ul id="name_ul" class="name-ul">
     <li>
+      <i></i>
       <input id="send-name1" class="send-name" type="radio" name="send-name" value="maozhuxi">
       <label for="send-name1">maozhuxi</label>
     </li>
     <li>
+      <i></i>
       <input id="send-name2" class="send-name" type="radio" name="send-name" value="jiangshouzhang">
-      <label for="send-name2">jiangshouzhang</label>
+      <label for="send-name2">dengtongzhi</label>
     </li>
     <li>
+      <i></i>
       <input id="send-name3" class="send-name" type="radio" name="send-name" value="hushuji">
-      <label for="send-name3">hushuji</label>
+      <label for="send-name3">jiangshouzhang</label>
     </li>
     <li>
+      <i></i>
       <input id="send-name4" class="send-name" type="radio" name="send-name" value="xidada">
       <label for="send-name4">xidada</label>
     </li>
@@ -90,15 +80,17 @@
       $('#select_input').click(function () {
         $('#name_ul').show(200);
       });
+      var img_Url="common/images/nav3.png";
       $('#name_ul li').each(function () {
         $(this).click(function () {
           $(this).css('border','1px solid #ccc').siblings().hide();
           $('#send_sub').attr("disabled",false).css('background','#aaa');
+          $('nav').css({'background':'url('+img_Url+')','background-repeat':'no-repeat','background-size':'80%','background-color':'#4fbbf4','background-position':'center'});
         })
       });
       $('#send_sub').click(function () {
         window.location.href="finish.html"
-      })
+      });
     })
   </script>
 </div>
