@@ -17,10 +17,11 @@
     .btn-name:focus{outline: none;}
     .btn-use, .btn-use:hover, .btn-use:focus{border: 1px solid #fac77d; color: #fac77d;}
     .margin-div{margin:0 auto;text-align: center}
-    .draggable{width: 110px;height: 50px;float: left;z-index: 99;bottom: 25px;}
+    .draggable{width: 110px;height: 50px;float: left;z-index: 99;bottom: 25px;position: relative;}
     .draggable img{width: 100%;height: 100%;border: 1px dashed #4fbbf4;}
     .demo-description{position: relative;}
     .demo-description img{width: 100%;position: relative;top:-50px;left: 0;}
+    .drag-title{position: absolute;bottom: -20px;margin: 0;width: 100%;text-align: center;color: #4fbbf4;margin: 0;}
   </style>
   <!--<link rel="shortcut icon" href="/ico/favicon.ico">-->
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
@@ -39,6 +40,7 @@
 <h1>体验云合同</h1>
  <div id="draggable" class="draggable">
    <img id="sign" src=""/>
+   <p id="drag-title" class="drag-title">拖拽进行签署</p>
  </div>
 
  <div class="demo-description">
@@ -79,7 +81,6 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-
 <script type="text/javascript">
   var destLeft = 0;
   var destTop = 0;
@@ -106,9 +107,16 @@
     $('#SmsModal').modal('hide');
   });
 
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = d.getMonth() + 1; // 记得当前月是要+1的
+  var dt = d.getDate();
+  var today = year + "年" + month + "月" + dt +"日";
   $("#signSubmitBtn").click(function () {
     $('#SmsModal').modal('hide');
     $("#draggable").unbind();
+    $("#drag-title").text(today);
+    $("#sign").css('border','none');
     $('#btnSign').css("display","none");
     $('#send').css("display","block");
   });
