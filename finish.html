@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="common/nativeShare.js"></script>
     <title>完成页面</title>
     <style>
         *{padding: 0;margin: 0}
@@ -15,11 +16,35 @@
         header h2,h3,h5{margin: 15px 0}
         section{;margin: 20px auto 50px}
         footer{width:100%;position: absolute;bottom:2em;}
-        footer dt,dd{display: inline}
-        .finish-link1{background: url("common/images/wx.png")no-repeat center}
-        .finish-link2{background: url("common/images/wb.png")no-repeat center}
-        .finish-link3{background: url("common/images/fr.png")no-repeat center}
-        .finish-link{width: 40px;height: 40px;display: inline-block;background-size: contain;position: relative;top: 10px;}
+        #nativeShare>.label{text-align: left;text-indent:20%;margin-bottom: 20px;}
+        #nativeShare i{
+            width: 40px;
+            display: inline-block;
+            height: 40px;
+            position: relative;
+            top: 13px;
+        }
+        #nativeShare span:nth-of-type(1){
+            margin-right: 10px;
+            font-size:85%;
+        }
+        #nativeShare span:nth-of-type(3){
+            margin: 0 15px;
+        }
+        #nativeShare .weibo i {
+            background-image: url('common/images/wb.png');
+            background-size: cover;
+        }
+
+        #nativeShare .weixin i {
+            background-image: url('common/images/wx.png');
+            background-size: cover;
+        }
+
+        #nativeShare .weixin_timeline i {
+            background-image: url('common/images/fr.png');
+            background-size: cover;
+        }
         @media (max-width: 320px) {
             header{margin: 50px auto}
         }
@@ -36,12 +61,24 @@
     <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.lxkj.yunhetong">下载云合同</a>
 </section>
 <footer>
-    <dl>
+    <div id="nativeShare"></div>
+    <script>
+        var config = {
+            url:'http://blog.wangjunfeng.com',
+            title:'',
+            desc:'王俊锋的个人博客',
+            img:'http://www.wangjunfeng.com/img/face.jpg',
+            img_title:'王俊锋的个人博客',
+            from:'王俊锋的博客'
+        };
+        var share_obj = new nativeShare('nativeShare',config);
+    </script>
+    <!--<dl>
         <dt>分享至: </dt>
         <a class="finish-link finish-link1" href=""></a>
         <a class="finish-link finish-link2" href=""></a>
         <a class="finish-link finish-link3" href=""></a>
-    </dl>
+    </dl>-->
 </footer>
 </body>
 </html>
